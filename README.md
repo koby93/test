@@ -2,7 +2,7 @@
 
 One integrated application for managing government ICT projects from the request for Technical Clearance to the issuance of a Certificate of Conformity, with NITA oversight and controlled inter-agency verification.
 
-**Current status: Module 0 implemented; full Docker integration verification pending.** The repository now contains the frontend, backend, common contracts, schema/migrations, infrastructure and reusable workflow engine. Local builds, type checks and 32 foundation tests pass. See the [validation record](docs/module-0-validation.md) for the exact verification status. Modules 1–14 remain planned only.
+**Current status: Module 0 complete and verified.** The repository contains the frontend, backend, common contracts, schema/migrations, infrastructure and reusable workflow engine. Builds, type checks, 43 tests, complete Docker startup, full-stack smoke checks and dependency outage/recovery passed in the [verification run](https://github.com/koby93/test/actions/runs/36997601590). See the [validation record](docs/module-0-validation.md) for the evidence and remaining integration boundaries. Modules 1–14 remain planned only.
 
 ## Official lifecycle and decision authority
 
@@ -46,7 +46,7 @@ The numbering describes capability areas. Delivery follows dependencies and the 
 
 | Module | Capability | Planned responsibility | Status |
 | --- | --- | --- | --- |
-| 0 | Core Platform and Architecture | Application foundation, platform interfaces, shared conventions and architecture baseline | Implemented; Docker verification pending |
+| 0 | Core Platform and Architecture | Application foundation, platform interfaces, shared conventions and architecture baseline | Complete and verified |
 | 1 | Identity, Institutions and Access Control | Institutions, users, role assignments and access administration using common identity/RBAC | Planned |
 | 2 | Government ICT Project Registry | Authoritative project master, Project ID and lifecycle-linked registry | Planned |
 | 3 | Technical Clearance | Submissions, assessment, ordered recommendations and Director-General decisions | Planned |

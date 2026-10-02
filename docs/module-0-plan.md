@@ -1,6 +1,6 @@
 # Module 0: Core Platform and Architecture
 
-Status: **foundation implemented; full Docker integration verification pending**. The owner's 2 October 2026 request authorizes the selected stack and reusable workflow/state-machine engine, superseding the preparation-only status and narrower future-scope notes below. See the [implementation decisions](decisions/0002-module-0-stack.md), [workflow service decision](decisions/0003-workflow-foundation.md) and [validation record](module-0-validation.md). The original plan is retained for traceability; Modules 1–14 remain outside this increment.
+Status: **Module 0 complete and verified**. The owner's 2 October 2026 request authorizes the selected stack and reusable workflow/state-machine engine, superseding the preparation-only status and narrower future-scope notes below. See the [implementation decisions](decisions/0002-module-0-stack.md), [workflow service decision](decisions/0003-workflow-foundation.md) and [validation record](module-0-validation.md). The original plan is retained for traceability; Modules 1–14 remain outside this increment.
 
 ## Goal
 
@@ -45,17 +45,18 @@ Do not use this plan as authorization to implement Modules 1–14. Those capabil
 
 ## Future Module 0 acceptance criteria
 
-Foundation acceptance is tracked below; environment-level acceptance additionally requires the full Docker integration checks in the validation record.
+Foundation and environment acceptance are tracked below; the [validation record](module-0-validation.md) links the successful full-platform verification run.
 
 - [x] Runtime and supporting product choices are recorded and reproducible through the lockfile.
 - [x] One backend bootstrap and coordinated frontend/backend release structure exist.
-- [x] One integrated schema and committed migration sequence are provided; actual deployment verification is tracked separately.
+- [x] One integrated schema and committed migration sequence are provided and verified against PostgreSQL.
 - [x] Shared Project ID anchors and foreign keys prevent independent project masters.
 - [x] Common actor/RBAC, document, workflow, audit and API interfaces are defined.
 - [x] Local tests cover configuration, authorization defaults and foundation contracts.
 - [x] Setup instructions and synthetic configuration examples match the selected stack.
 - [x] Exact clearance/conformity hierarchies and read-only verification limits remain preserved.
 - [x] No Module 1–14 business capability has been implemented outside the task scope.
+- [x] Complete Docker startup, 11 real-dependency integration tests, API/frontend smoke checks and dependency outage/recovery passed.
 
 ## Future behavior checks for the business modules
 
