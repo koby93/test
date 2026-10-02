@@ -1,6 +1,6 @@
 # Module 0: Core Platform and Architecture
 
-Status: **prepared for development; not implemented**.
+Status: **foundation implemented; full Docker integration verification pending**. The owner's 2 October 2026 request authorizes the selected stack and reusable workflow/state-machine engine, superseding the preparation-only status and narrower future-scope notes below. See the [implementation decisions](decisions/0002-module-0-stack.md), [workflow service decision](decisions/0003-workflow-foundation.md) and [validation record](module-0-validation.md). The original plan is retained for traceability; Modules 1–14 remain outside this increment.
 
 ## Goal
 
@@ -14,7 +14,7 @@ Establish the technical foundation of the one integrated NITA application so fut
 - Repository text/Git conventions and a pull request checklist.
 - A [source reference](reference/workflow-source.md) identifying the supplied workflow image and its checksum.
 
-This is documentation and repository preparation. There is no runtime code, installed stack, physical schema, live service, deployment or implemented Module 1–14 capability.
+The original preparation was documentation-only. Module 0 now adds runtime components, the integrated schema/migrations, infrastructure and shared services; it introduces no Module 1–14 business capability.
 
 ## Future Module 0 scope
 
@@ -45,17 +45,17 @@ Do not use this plan as authorization to implement Modules 1–14. Those capabil
 
 ## Future Module 0 acceptance criteria
 
-These boxes remain unchecked because runtime development has not started.
+Foundation acceptance is tracked below; environment-level acceptance additionally requires the full Docker integration checks in the validation record.
 
-- [ ] Runtime and supporting product choices are recorded and reproducible.
-- [ ] One application bootstrap and coordinated release structure exist.
-- [ ] One integrated persistence/migration approach is documented and usable.
-- [ ] Shared Project ID conventions prevent independent project identities in modules.
-- [ ] Common actor/RBAC, document, workflow, audit and API interfaces are defined.
-- [ ] Foundation validation covers relevant configuration, authorization defaults and contract behavior.
-- [ ] Local setup instructions match the implemented stack and contain no secrets.
-- [ ] The exact clearance/conformity hierarchies and read-only verification limits remain preserved.
-- [ ] No Module 1–14 business capability has been implemented outside the task scope.
+- [x] Runtime and supporting product choices are recorded and reproducible through the lockfile.
+- [x] One backend bootstrap and coordinated frontend/backend release structure exist.
+- [x] One integrated schema and committed migration sequence are provided; actual deployment verification is tracked separately.
+- [x] Shared Project ID anchors and foreign keys prevent independent project masters.
+- [x] Common actor/RBAC, document, workflow, audit and API interfaces are defined.
+- [x] Local tests cover configuration, authorization defaults and foundation contracts.
+- [x] Setup instructions and synthetic configuration examples match the selected stack.
+- [x] Exact clearance/conformity hierarchies and read-only verification limits remain preserved.
+- [x] No Module 1–14 business capability has been implemented outside the task scope.
 
 ## Future behavior checks for the business modules
 

@@ -38,3 +38,9 @@ coverage/
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Framework output and generated Prisma client (generated into node_modules)
+.next/
+*.tsbuildinfo
+test-results/
+playwright-report/

@@ -1,6 +1,6 @@
 # Lifecycle, workflow and verification rules
 
-This baseline translates the project owner's requirements and supplied workflow into development constraints. The explicit written requirements govern if a visual label is abbreviated or ambiguous. No routes, executable workflow definitions or business screens are implemented here.
+This document translates the project owner's requirements and supplied workflow into development constraints. The explicit written requirements govern if a visual label is abbreviated or ambiguous. Module 0 now implements common transition/governance services; no business routes, production workflow definitions or business-module screens are introduced. See [ADR 0003](decisions/0003-workflow-foundation.md).
 
 ## Official lifecycle
 

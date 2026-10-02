@@ -6,7 +6,7 @@ These instructions apply throughout this repository to every developer and codin
 
 Build the **NITA Technical Clearance and Conformity Management System**, one integrated application for the complete lifecycle of government ICT projects.
 
-The current baseline is **repository preparation for Module 0**: documentation, architecture decisions, development conventions and a plan for the platform foundation. It contains no application implementation. Do not implement Modules 1–14 during this preparation. Implement subsequent work only within the scope of the current development task; an entry in the roadmap is not authorization to implement that module.
+The current development scope is **Module 0 — Core Platform and Architecture**, authorized on 2 October 2026. Implement the requested Next.js/NestJS/PostgreSQL/Prisma/Redis/MinIO foundation, shared contracts, workflow engine and its tests. Do not implement Modules 1–14 prematurely. Implement subsequent work only within the scope of the current development task; an entry in the roadmap is not authorization to implement that module.
 
 ## Non-negotiable architecture
 
@@ -102,7 +102,7 @@ Module numbers identify capabilities, not isolated applications or a rigid imple
 
 - Read [README.md](README.md), [architecture](docs/architecture.md), [workflow rules](docs/workflows.md), and the [Module 0 plan](docs/module-0-plan.md). Inspect existing code and nested instructions before editing.
 - Keep business policy out of presentation components. Modules use documented platform interfaces; database writes follow defined ownership and authorization boundaries.
-- Do not select or introduce a runtime framework, package manager, database product, identity provider or cloud dependency silently. Record consequential selections, alternatives and consequences in `docs/decisions/` when the relevant task requires a choice. The initial baseline deliberately leaves those products open.
+- The owner-selected Module 0 stack is Next.js, TypeScript, Tailwind CSS, shadcn/ui, NestJS, REST/Swagger, PostgreSQL, Prisma, Redis, MinIO/S3, Docker and Docker Compose, with OAuth2/OIDC-compatible, Keycloak-ready and MFA-ready authentication. Record implementation choices in `docs/decisions/`; do not change this stack silently.
 - Keep schemas, migrations and API contracts consistent across modules. No opportunistic per-module Project ID generators, user stores, file stores, audit tables or approval engines.
 - Store timestamps consistently in UTC; presentation may use the user's timezone. Never infer authority from a display name, email domain or client-supplied role.
 - Keep credentials, private keys, real applicant/project records, uploaded case evidence and personal data out of Git. Use synthetic fixtures and documented configuration templates; secret values belong in approved runtime configuration.

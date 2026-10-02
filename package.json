@@ -1,0 +1,18 @@
+{
+  "name": "nita-technical-clearance-system",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": ["frontend", "backend", "packages/contracts"],
+  "engines": { "node": ">=24 <25", "npm": ">=11 <12" },
+  "scripts": {
+    "build": "npm run build -w @nita/contracts && npm run db:generate && npm run build -w @nita/backend && npm run build -w @nita/frontend",
+    "typecheck": "npm run build -w @nita/contracts && npm run db:generate && npm run typecheck --workspaces --if-present",
+    "test": "npm run build -w @nita/contracts && npm run db:generate && npm run test -w @nita/backend && npm run test -w @nita/frontend",
+    "test:integration": "npm run test:integration -w @nita/backend",
+    "db:generate": "npm run db:generate -w @nita/backend",
+    "db:migrate": "npm run db:migrate -w @nita/backend",
+    "db:validate": "npm run db:validate -w @nita/backend",
+    "dev:backend": "npm run dev -w @nita/backend",
+    "dev:frontend": "npm run dev -w @nita/frontend"
+  }
+}

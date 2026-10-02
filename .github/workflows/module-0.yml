@@ -1,0 +1,41 @@
+name: Module 0 platform verification
+on:
+  push:
+    branches: [master]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  platform:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      DATABASE_URL: postgresql://nita:development-only-database@localhost:5432/nita
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run db:validate
+      - run: npm run build
+      - run: npm run typecheck
+      - run: npm test
+      - run: docker compose config --quiet
+      - run: docker compose up --build --wait --wait-timeout 180
+      - run: docker compose --profile test run --rm platform-tests
+      - run: node scripts/smoke.mjs
+      - name: Dependency outage and recovery
+        run: |
+          docker compose stop minio
+          node scripts/check-outage.mjs
+          docker compose start minio
+          node scripts/check-recovery.mjs
+      - name: Logs
+        if: failure()
+        run: docker compose logs --no-color --tail 80
+      - name: Stop disposable test environment
+        if: always()
+        run: docker compose down --volumes

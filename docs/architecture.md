@@ -1,6 +1,6 @@
 # Architecture baseline
 
-Status: accepted application boundaries; conceptual design only. Runtime technology and physical schemas remain open for Module 0.
+Status: accepted application boundaries, implemented by the Module 0 foundation. The owner-selected stack and actual workspace layout are recorded in [ADR 0002](decisions/0002-module-0-stack.md); the common engine is described in [ADR 0003](decisions/0003-workflow-foundation.md). Full Docker integration verification status is recorded [here](module-0-validation.md).
 
 ## Product boundary
 
@@ -21,11 +21,11 @@ Institution users, NITA reviewers, final decision-makers, the Certification Unit
 | API | Common validation, versioning, authentication, authorization and errors | Module routes belong to the same API; Module 12 supplies adapters |
 | Tasks/communications | Shared assignment and delivery interfaces linked to authoritative records | Module 10 extends tasks and notifications; messages never replace a recorded decision |
 
-Module 0 defines the composition, contracts and minimum technical foundation. Numbered capability modules extend these contracts instead of duplicating them. Defining an interface in Module 0 does not mean implementing the business capability of Module 1, 9, 10 or 13.
+Module 0 implements the composition, contracts and minimum technical foundation. Numbered capability modules extend these contracts instead of duplicating them. Platform services and schema anchors do not implement the business capability of Module 1, 2, 9, 10 or 13.
 
 ## Authoritative data and ownership
 
-This is a conceptual relationship map, not a migration or a selected schema.
+This is the capability ownership map. Module 0 implements minimal Project, document/version, workflow/transition/evidence and audit anchors in `backend/prisma/schema.prisma`; institution administration, case records, certificates and tasks are not implemented.
 
 | Record family | Authoritative owner | Relationship and invariant |
 | --- | --- | --- |
@@ -44,7 +44,7 @@ Each project-scoped record must reference the project master. Non-project admini
 
 Do not create one universal status field that loses the difference between lifecycle phase, review stage, decision outcome, conditional obligations and certificate state. Retain versions and history so the application can show which evidence supported each decision.
 
-One integrated database architecture means a common relational model and migration sequence, with foreign keys or equivalent enforced referential integrity. The database product is unselected. Document bytes may be stored in common object storage; the storage service is also unselected. Metadata and access control remain authoritative in the integrated system.
+One integrated database architecture means a common PostgreSQL/Prisma model and migration sequence with foreign keys. File bytes belong in common MinIO/S3 storage; metadata and access control remain authoritative in the integrated system. Minimal schema anchors expose no project/document CRUD endpoints.
 
 ## Workflow and transaction boundaries
 
@@ -64,7 +64,7 @@ Restrict search results, exports, document downloads and integration responses a
 
 ## Future source structure
 
-The following paths are reserved design conventions, not existing implementations or separate applications. Adapt language-specific filenames through a documented stack decision while retaining the boundaries.
+The original logical boundaries below remain applicable. ADR 0002 maps them to `backend/src`, `frontend/src`, `packages/contracts`, workspace tests and `infra/` in the actual npm monorepo. These are components of one product, not separate business-module applications.
 
 | Future path | Responsibility |
 | --- | --- |
@@ -78,9 +78,8 @@ The following paths are reserved design conventions, not existing implementation
 
 ## Decisions still required
 
-- Runtime language/framework, package management and application composition conventions.
-- Database product, migration tooling and document-storage product.
-- Identity-provider integration and authentication assurance for the different actor groups.
+- Technology and layout selections are resolved by ADR 0002. Hosting/production deployment remains later work.
+- The foundation uses configured OIDC JWT/JWKS verification; actual identity-provider realm, memberships and assurance policy for actor groups remain to be configured in later work.
 - Detailed data classifications, retention and document access policy.
 - Project ID generation and optional human-readable reference format.
 - Workflow state vocabulary, condition rules, return paths and delegation policy.
