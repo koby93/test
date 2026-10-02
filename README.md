@@ -105,7 +105,7 @@ Install Docker Engine/Desktop with Docker Compose v2, then run from the reposito
 docker compose up
 ```
 
-Compose builds both components, starts PostgreSQL/Redis/MinIO, creates the private records bucket, applies both Prisma migrations, and starts the API and frontend after their dependencies are ready. No manual database setup or seed is required. The baseline contains no real project or user data.
+Compose builds both components, starts PostgreSQL/Redis/MinIO, creates the private records bucket, applies both Prisma migrations, and starts the API and frontend after their dependencies are ready. The first build also compiles the pinned MinIO security release from source; allow extra time for its Go dependencies to download. No manual database setup or seed is required. The baseline contains no real project or user data.
 
 | URL | Purpose |
 | --- | --- |

@@ -53,7 +53,9 @@ services:
       retries: 15
 
   minio:
-    image: minio/minio:RELEASE.2025-04-22T22-12-26Z
+    build:
+      context: .
+      dockerfile: infra/minio/Dockerfile
     environment:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER:-nita-development}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-development-only-storage}
@@ -67,13 +69,9 @@ services:
       retries: 20
 
   minio-init:
-    image: minio/mc:RELEASE.2025-04-16T18-13-26Z
-    entrypoint: ["/bin/sh", "/bootstrap/init.sh"]
-    environment:
-      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-nita-development}
-      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-development-only-storage}
-      S3_BUCKET: ${S3_BUCKET:-nita-records}
-    volumes: ["./infra/minio/init.sh:/bootstrap/init.sh:ro"]
+    build: *backend-build
+    command: ["node", "scripts/init-storage.mjs"]
+    environment: *api-environment
     depends_on:
       minio: { condition: service_healthy }
 
